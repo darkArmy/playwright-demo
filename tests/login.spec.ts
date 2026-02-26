@@ -1,7 +1,6 @@
-const { test, expect } = require('@playwright/test');
-const { LoginPage } = require('../pages/LoginPage');
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage.js';
 
-// 登录测试
 test.beforeEach(async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.goto();

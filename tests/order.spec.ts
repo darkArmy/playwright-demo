@@ -1,6 +1,6 @@
-const { test, expect } = require('@playwright/test');
-const { LoginPage } = require('../pages/LoginPage');
-const { InventoryPage } = require('../pages/InventoryPage');
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage.js';
+import { InventoryPage } from '../pages/InventoryPage.js';
 
 test.beforeEach(async ({ page }) => {
   const loginPage = new LoginPage(page);
@@ -11,6 +11,7 @@ test.beforeEach(async ({ page }) => {
 test('user can complete order', async ({ page }) => {
   const inventoryPage = new InventoryPage(page);
   await inventoryPage.addBackpackToCart();
-  
-  await expect(inventoryPage.products).toHaveCount(6);
+
+  const count = await inventoryPage.getProductCount();
+  expect(count).toBe(6);
 });

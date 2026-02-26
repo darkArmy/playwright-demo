@@ -1,4 +1,4 @@
-const { test, expect } = require('./fixtures');
+import { test, expect } from '../fixtures/fixtures.js';
 
 test.beforeEach(async ({ loginPage }) => {
   await loginPage.goto();
@@ -7,4 +7,7 @@ test.beforeEach(async ({ loginPage }) => {
 
 test('add item to cart', async ({ inventoryPage }) => {
   await inventoryPage.addBackpackToCart();
+  
+  const count = await inventoryPage.getProductCount();
+  expect(count).toBe(6);
 });
